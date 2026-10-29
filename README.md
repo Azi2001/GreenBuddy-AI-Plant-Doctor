@@ -1,1 +1,1 @@
-# GreenBuddy---AI
+# GreenBuddy-AI-Plant-Doctor

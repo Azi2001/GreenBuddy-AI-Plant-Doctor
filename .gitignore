@@ -221,3 +221,5 @@ __marimo__/
 
 *.db
 uploads/
+
+node_modules/

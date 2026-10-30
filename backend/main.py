@@ -9,6 +9,7 @@ from PIL import Image
 from tensorflow import keras
 from tensorflow.keras import layers
 import re
+from auth import router as auth_router
 
 # --- Load the model and class names once, when the server starts ---
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -68,6 +69,7 @@ if missing:
 
 # --- Create the app ---
 app = FastAPI(title="GreenBuddy AI Plant Doctor")
+app.include_router(auth_router)
 
 app.add_middleware(
     CORSMiddleware,

@@ -17,6 +17,9 @@ from auth import get_current_user
 from auth import router as auth_router
 from database import SessionLocal, get_db
 from models import Disease, Scan, User
+from datetime import datetime, timedelta, timezone
+
+from sqlalchemy import func
 
 # --- Load the model and class names once, when the server starts ---
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -199,3 +202,100 @@ def list_scans(
         }
         for s in scans
     ]
+@app.get("/stats")
+def get_stats(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    user_scans = db.query(Scan).filter(Scan.user_id == current_user.id)
+
+    total = user_scans.count()
+    healthy = user_scans.join(Disease).filter(Disease.is_healthy.is_(True)).count()
+    diseased = total - healthy
+
+    # Scans in the last 7 days (SQLite stores times without a timezone)
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).replace(tzinfo=None)
+    this_week = user_scans.filter(Scan.created_at >= week_ago).count()
+
+    # The disease this user has found most often (healthy scans don't count)
+    top = (
+        db.query(Disease.crop, Disease.name, func.count(Scan.id).label("n"))
+        .join(Scan, Scan.disease_id == Disease.id)
+        .filter(Scan.user_id == current_user.id, Disease.is_healthy.is_(False))
+        .group_by(Disease.id)
+        .order_by(func.count(Scan.id).desc())
+        .first()
+    )
+    most_common = {"crop": top.crop, "disease": top.name, "count": top.n} if top else None
+
+    # Number of scans for each of the last 7 days (for a chart)
+    counts = {}
+    for s in user_scans.filter(Scan.created_at >= week_ago).all():
+        day = s.created_at.date().isoformat()
+        counts[day] = counts.get(day, 0) + 1
+
+    today = datetime.now(timezone.utc).date()
+    per_day = []
+    for i in range(6, -1, -1):
+        day = (today - timedelta(days=i)).isoformat()
+        per_day.append({"date": day, "scans": counts.get(day, 0)})
+
+    return {
+        "total_scans": total,
+        "healthy": healthy,
+        "diseased": diseased,
+        "healthy_percent": round(100 * healthy / total) if total else 0,
+        "scans_this_week": this_week,
+        "most_common_disease": most_common,
+        "scans_per_day": per_day,
+    }
+
+
+def get_own_scan(scan_id: int, user: User, db: Session) -> Scan:
+    """Finds a scan, but only if it belongs to this user."""
+    scan = db.get(Scan, scan_id)
+    if scan is None or scan.user_id != user.id:
+        raise HTTPException(status_code=404, detail="Scan not found")
+    return scan
+
+
+@app.get("/scans/{scan_id}")
+def get_scan(
+    scan_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    scan = get_own_scan(scan_id, current_user, db)
+    d = scan.disease
+    return {
+        "scan_id": scan.id,
+        "prediction": {
+            "crop": d.crop,
+            "disease": d.name,
+            "confidence": round(scan.confidence, 4),
+        },
+        "low_confidence": scan.low_confidence,
+        "details": {
+            "is_healthy": d.is_healthy,
+            "category": d.category,
+            "symptoms": d.symptoms,
+            "treatment": d.treatment,
+            "prevention": d.prevention,
+        },
+        "image_url": f"/{scan.image_path}",
+        "created_at": scan.created_at.isoformat(),
+        "disclaimer": DISCLAIMER,
+    }
+
+
+@app.delete("/scans/{scan_id}", status_code=204)
+def delete_scan(
+    scan_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    scan = get_own_scan(scan_id, current_user, db)
+    image_file = UPLOAD_DIR / Path(scan.image_path).name
+    db.delete(scan)
+    db.commit()
+    image_file.unlink(missing_ok=True)

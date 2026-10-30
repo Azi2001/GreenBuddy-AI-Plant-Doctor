@@ -1,0 +1,682 @@
+{
+  "disclaimer": "These suggestions are general gardening advice, not a guarantee. Always read and follow the label of any product, check what is approved in your country, and ask your local agriculture office or plant nursery if you are unsure. Try the simple, non-chemical steps first.",
+  "diseases": [
+    {
+      "class_name": "Apple___Apple_scab",
+      "crop": "Apple",
+      "disease": "Apple scab",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Olive-green to brown velvety spots on leaves, later turning dark and scabby. Fruit can get rough dark scabs.",
+      "treatment": [
+        "Rake up and destroy fallen leaves, where the fungus survives the winter",
+        "Prune to open up the tree so leaves dry quickly",
+        "Remove badly spotted leaves and fruit",
+        "If needed, spray a protectant fungicide (for example sulfur or captan) from early spring, following the product label"
+      ],
+      "prevention": [
+        "Choose scab-resistant apple varieties",
+        "Clean up fallen leaves every autumn",
+        "Water at the base of the tree, not over the leaves"
+      ]
+    },
+    {
+      "class_name": "Apple___Black_rot",
+      "crop": "Apple",
+      "disease": "Black rot",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Round brown leaf spots with a purple edge (a 'frog-eye' look), rotting fruit and dead, sunken areas on branches.",
+      "treatment": [
+        "Prune out dead wood and cankers on branches, cutting into healthy wood, and destroy them",
+        "Remove rotten and shrivelled fruit from the tree and the ground",
+        "If needed, use a fungicide labelled for apple black rot, following the product label"
+      ],
+      "prevention": [
+        "Remove dead branches and old fruit each season",
+        "Avoid wounding the bark",
+        "Keep the tree well watered and fed so it stays strong"
+      ]
+    },
+    {
+      "class_name": "Apple___Cedar_apple_rust",
+      "crop": "Apple",
+      "disease": "Cedar apple rust",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Bright yellow-orange spots on the upper side of leaves, sometimes with small tube-like growths underneath.",
+      "treatment": [
+        "Remove badly affected leaves",
+        "Remove nearby juniper or cedar trees if possible, since the fungus needs them to complete its life cycle",
+        "If needed, use a fungicide labelled for apple rust from early spring, following the product label"
+      ],
+      "prevention": [
+        "Plant rust-resistant apple varieties",
+        "Avoid planting apples close to junipers or cedars"
+      ]
+    },
+    {
+      "class_name": "Apple___healthy",
+      "crop": "Apple",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Blueberry___healthy",
+      "crop": "Blueberry",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Cherry_(including_sour)___Powdery_mildew",
+      "crop": "Cherry",
+      "disease": "Powdery mildew",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "White powdery patches on leaves, which may curl, twist or turn yellow.",
+      "treatment": [
+        "Remove and bin badly affected leaves and shoots",
+        "Prune to improve air flow around the tree",
+        "Spray a potassium bicarbonate solution, neem oil or sulfur, following the product label",
+        "Repeat sprays every 7 to 14 days while the weather stays humid"
+      ],
+      "prevention": [
+        "Avoid too much nitrogen fertiliser, which causes soft new growth",
+        "Keep branches open and not crowded",
+        "Water at the base, in the morning"
+      ]
+    },
+    {
+      "class_name": "Cherry_(including_sour)___healthy",
+      "crop": "Cherry",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+      "crop": "Corn (maize)",
+      "disease": "Gray leaf spot",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Long, narrow, rectangular grey or tan spots that run between the leaf veins, mostly on lower leaves.",
+      "treatment": [
+        "Remove and destroy badly affected lower leaves",
+        "Clear away old corn residue after harvest",
+        "In severe cases, use a fungicide labelled for corn, following the product label"
+      ],
+      "prevention": [
+        "Rotate crops so corn does not follow corn",
+        "Choose resistant varieties",
+        "Space plants so air can move between them"
+      ]
+    },
+    {
+      "class_name": "Corn_(maize)___Common_rust_",
+      "crop": "Corn (maize)",
+      "disease": "Common rust",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Small round to oval reddish-brown powdery bumps on both sides of the leaves.",
+      "treatment": [
+        "Light infections usually do little harm, so keep watching the plants",
+        "Remove badly affected leaves",
+        "In severe cases, use a fungicide labelled for corn, following the product label"
+      ],
+      "prevention": [
+        "Plant rust-resistant varieties",
+        "Plant early in the season",
+        "Avoid overcrowding"
+      ]
+    },
+    {
+      "class_name": "Corn_(maize)___Northern_Leaf_Blight",
+      "crop": "Corn (maize)",
+      "disease": "Northern leaf blight",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Long, cigar-shaped grey-green to tan lesions, often several centimetres long, on the leaves.",
+      "treatment": [
+        "Remove and destroy badly affected leaves",
+        "Clear away old corn residue after harvest",
+        "In severe cases, use a fungicide labelled for corn, following the product label"
+      ],
+      "prevention": [
+        "Rotate crops",
+        "Choose resistant varieties",
+        "Avoid overhead watering"
+      ]
+    },
+    {
+      "class_name": "Corn_(maize)___healthy",
+      "crop": "Corn (maize)",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Grape___Black_rot",
+      "crop": "Grape",
+      "disease": "Black rot",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Brown leaf spots with dark borders, and berries that shrivel into hard black 'mummies'.",
+      "treatment": [
+        "Remove and destroy all mummified berries and infected leaves",
+        "Prune the vine so sunlight and air reach the fruit",
+        "If needed, use a fungicide labelled for grape black rot from early shoot growth, following the product label"
+      ],
+      "prevention": [
+        "Clean up fallen fruit and leaves every season",
+        "Train vines to be open and airy",
+        "Avoid overhead watering"
+      ]
+    },
+    {
+      "class_name": "Grape___Esca_(Black_Measles)",
+      "crop": "Grape",
+      "disease": "Esca (black measles)",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "'Tiger-stripe' yellow and brown patterns on leaves, and dark spots on berries. It is a disease of the wood.",
+      "treatment": [
+        "There is no cure, so protect the rest of the vineyard or vines",
+        "Prune out affected wood in dry weather, well below the damage, and burn or bin it",
+        "If a vine is badly affected, remove it",
+        "Disinfect pruning tools between cuts"
+      ],
+      "prevention": [
+        "Prune only in dry weather",
+        "Protect large pruning wounds",
+        "Avoid stressing vines with drought"
+      ]
+    },
+    {
+      "class_name": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+      "crop": "Grape",
+      "disease": "Leaf blight (Isariopsis leaf spot)",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Dark brown, irregular spots on leaves, which can make them dry out and drop early.",
+      "treatment": [
+        "Remove and destroy affected leaves and fallen debris",
+        "Prune to improve air flow",
+        "If needed, use a fungicide labelled for grape leaf spot, following the product label"
+      ],
+      "prevention": [
+        "Keep vines open and well spaced",
+        "Water at the base of the plant",
+        "Clean up fallen leaves"
+      ]
+    },
+    {
+      "class_name": "Grape___healthy",
+      "crop": "Grape",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Orange___Haunglongbing_(Citrus_greening)",
+      "crop": "Orange",
+      "disease": "Citrus greening (Huanglongbing)",
+      "category": "bacterial",
+      "is_healthy": false,
+      "symptoms": "Blotchy yellow mottling on leaves, small lopsided bitter fruit, and a tree that slowly declines.",
+      "treatment": [
+        "There is no cure. Contact your local agriculture office or department for advice, because this disease is serious and spreads between trees",
+        "Remove and destroy infected trees as advised by the authorities",
+        "Control the Asian citrus psyllid, the insect that spreads it"
+      ],
+      "prevention": [
+        "Buy only certified disease-free plants",
+        "Check new growth for psyllids",
+        "Do not move cuttings or plants from infected areas"
+      ]
+    },
+    {
+      "class_name": "Peach___Bacterial_spot",
+      "crop": "Peach",
+      "disease": "Bacterial spot",
+      "category": "bacterial",
+      "is_healthy": false,
+      "symptoms": "Small dark spots on leaves that may fall out and leave tiny holes, plus spots and pits on the fruit.",
+      "treatment": [
+        "Remove badly affected leaves and fruit",
+        "Spray copper in early spring and at leaf fall, following the product label",
+        "Avoid overhead watering"
+      ],
+      "prevention": [
+        "Choose resistant varieties",
+        "Do not over-fertilise with nitrogen",
+        "Keep the tree well watered and not stressed"
+      ]
+    },
+    {
+      "class_name": "Peach___healthy",
+      "crop": "Peach",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Pepper,_bell___Bacterial_spot",
+      "crop": "Bell pepper",
+      "disease": "Bacterial spot",
+      "category": "bacterial",
+      "is_healthy": false,
+      "symptoms": "Small, water-soaked spots on leaves that turn brown, and rough raised spots on fruit.",
+      "treatment": [
+        "Remove and destroy badly affected leaves and plants",
+        "Spray a copper-based bactericide, following the product label",
+        "Do not touch or work with the plants when they are wet"
+      ],
+      "prevention": [
+        "Use disease-free seed or healthy seedlings",
+        "Rotate crops (do not plant peppers or tomatoes in the same place for 2 to 3 years)",
+        "Water at the base, not over the leaves"
+      ]
+    },
+    {
+      "class_name": "Pepper,_bell___healthy",
+      "crop": "Bell pepper",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Potato___Early_blight",
+      "crop": "Potato",
+      "disease": "Early blight",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Brown spots with ring patterns like a target, usually first on the older, lower leaves, with yellowing around them.",
+      "treatment": [
+        "Remove the affected lower leaves",
+        "Mulch around the plants to stop soil splashing onto the leaves",
+        "If needed, use a fungicide such as copper or chlorothalonil, following the product label",
+        "Keep the plants fed and watered, because stressed plants get it worse"
+      ],
+      "prevention": [
+        "Rotate crops every year",
+        "Water at the base of the plants",
+        "Use certified, healthy seed potatoes",
+        "Clear plant debris after harvest"
+      ]
+    },
+    {
+      "class_name": "Potato___Late_blight",
+      "crop": "Potato",
+      "disease": "Late blight",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Dark, water-soaked patches on leaves that spread fast, often with white fuzzy mould on the underside in damp weather. Tubers can rot.",
+      "treatment": [
+        "Act quickly, because this disease spreads very fast in wet weather",
+        "Remove and destroy infected plants. Bag them and do not compost them",
+        "Protect nearby healthy plants with a fungicide such as copper, following the product label",
+        "Do not store tubers from infected plants"
+      ],
+      "prevention": [
+        "Use certified, healthy seed potatoes",
+        "Remove volunteer potato plants",
+        "Avoid overhead watering and give plants space",
+        "Rotate crops"
+      ]
+    },
+    {
+      "class_name": "Potato___healthy",
+      "crop": "Potato",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Raspberry___healthy",
+      "crop": "Raspberry",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Soybean___healthy",
+      "crop": "Soybean",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Squash___Powdery_mildew",
+      "crop": "Squash",
+      "disease": "Powdery mildew",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "White powdery patches on the leaves, which later turn yellow and dry out.",
+      "treatment": [
+        "Remove and bin badly affected leaves",
+        "Spray a potassium bicarbonate solution, neem oil or horticultural oil, following the product label",
+        "Repeat every 7 to 10 days while it keeps spreading",
+        "Avoid sulfur sprays on squash in hot weather, because they can burn the leaves"
+      ],
+      "prevention": [
+        "Give plants plenty of space for air flow",
+        "Plant resistant varieties",
+        "Water at the base in the morning"
+      ]
+    },
+    {
+      "class_name": "Strawberry___Leaf_scorch",
+      "crop": "Strawberry",
+      "disease": "Leaf scorch",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Many small purple spots on leaves that grow and turn brown, making the leaf look scorched.",
+      "treatment": [
+        "Remove and destroy the affected leaves",
+        "After harvest, cut back old foliage and clear the bed",
+        "If needed, use a fungicide labelled for strawberries, following the product label"
+      ],
+      "prevention": [
+        "Space plants for good air flow",
+        "Water at the base, not over the leaves",
+        "Choose resistant varieties",
+        "Replace old plants regularly"
+      ]
+    },
+    {
+      "class_name": "Strawberry___healthy",
+      "crop": "Strawberry",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    },
+    {
+      "class_name": "Tomato___Bacterial_spot",
+      "crop": "Tomato",
+      "disease": "Bacterial spot",
+      "category": "bacterial",
+      "is_healthy": false,
+      "symptoms": "Small dark, greasy-looking spots on leaves, often with a yellow ring, and rough scabby spots on fruit.",
+      "treatment": [
+        "Remove and destroy badly affected leaves and plants",
+        "Spray a copper-based bactericide, following the product label (it slows the disease but does not cure it)",
+        "Do not touch or work with the plants when they are wet"
+      ],
+      "prevention": [
+        "Use disease-free seed or healthy seedlings",
+        "Rotate crops",
+        "Water at the base, not over the leaves"
+      ]
+    },
+    {
+      "class_name": "Tomato___Early_blight",
+      "crop": "Tomato",
+      "disease": "Early blight",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Brown spots with ring patterns like a target on older, lower leaves, with yellowing around them.",
+      "treatment": [
+        "Remove the affected lower leaves",
+        "Mulch around the plants to stop soil splashing onto the leaves",
+        "If needed, use a fungicide such as copper or chlorothalonil, following the product label",
+        "Stake or cage the plants so leaves stay off the soil"
+      ],
+      "prevention": [
+        "Rotate crops every year",
+        "Water at the base of the plants",
+        "Give plants room for air flow",
+        "Clear plant debris at the end of the season"
+      ]
+    },
+    {
+      "class_name": "Tomato___Late_blight",
+      "crop": "Tomato",
+      "disease": "Late blight",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Large dark, water-soaked patches on leaves and stems, often with white fuzzy mould underneath in damp weather. Fruit gets firm brown patches.",
+      "treatment": [
+        "Act quickly, because this disease spreads very fast in wet weather",
+        "Remove and destroy infected plants. Bag them and do not compost them",
+        "Protect nearby healthy plants with a fungicide such as copper, following the product label"
+      ],
+      "prevention": [
+        "Use healthy seedlings",
+        "Avoid overhead watering and give plants space",
+        "Remove volunteer tomato and potato plants",
+        "Rotate crops"
+      ]
+    },
+    {
+      "class_name": "Tomato___Leaf_Mold",
+      "crop": "Tomato",
+      "disease": "Leaf mould",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Pale yellow spots on the upper side of leaves, with olive-green to grey velvety mould on the underside.",
+      "treatment": [
+        "Improve air flow and lower the humidity, for example by opening greenhouse vents",
+        "Remove the affected leaves",
+        "If needed, use a fungicide labelled for tomatoes, following the product label"
+      ],
+      "prevention": [
+        "Space and prune plants so leaves dry quickly",
+        "Water at the base, in the morning",
+        "Choose resistant varieties"
+      ]
+    },
+    {
+      "class_name": "Tomato___Septoria_leaf_spot",
+      "crop": "Tomato",
+      "disease": "Septoria leaf spot",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Many small round spots with dark edges and grey centres on lower leaves, sometimes with tiny black dots in the centre.",
+      "treatment": [
+        "Remove affected lower leaves, bag them and bin them",
+        "Mulch around the plants to stop soil splashing onto the leaves",
+        "If needed, use a fungicide such as copper or chlorothalonil, following the product label"
+      ],
+      "prevention": [
+        "Rotate crops",
+        "Water at the base of the plants",
+        "Stake plants and give them space",
+        "Clear plant debris at the end of the season"
+      ]
+    },
+    {
+      "class_name": "Tomato___Spider_mites Two-spotted_spider_mite",
+      "crop": "Tomato",
+      "disease": "Spider mites",
+      "category": "pest",
+      "is_healthy": false,
+      "symptoms": "Tiny yellow dots on leaves, a dusty or bronzed look, and fine webbing on the underside. Leaves dry out and drop.",
+      "treatment": [
+        "Spray the plants with a strong jet of water, especially the underside of leaves",
+        "Spray insecticidal soap, neem oil or horticultural oil, covering both sides of the leaves, following the product label",
+        "Repeat every 5 to 7 days for a few weeks",
+        "Remove very badly infested leaves"
+      ],
+      "prevention": [
+        "Keep plants watered, because mites love dry, dusty, stressed plants",
+        "Check the undersides of leaves regularly in hot weather",
+        "Avoid harsh insecticides that kill the helpful insects that eat mites"
+      ]
+    },
+    {
+      "class_name": "Tomato___Target_Spot",
+      "crop": "Tomato",
+      "disease": "Target spot",
+      "category": "fungal",
+      "is_healthy": false,
+      "symptoms": "Brown spots with ring patterns on leaves, similar to early blight, and sometimes spots on the fruit.",
+      "treatment": [
+        "Remove and destroy affected leaves",
+        "Improve air flow by pruning and staking the plants",
+        "If needed, use a fungicide labelled for tomatoes, following the product label"
+      ],
+      "prevention": [
+        "Avoid overhead watering",
+        "Rotate crops",
+        "Clear plant debris at the end of the season"
+      ]
+    },
+    {
+      "class_name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+      "crop": "Tomato",
+      "disease": "Yellow leaf curl virus",
+      "category": "viral",
+      "is_healthy": false,
+      "symptoms": "Leaves curl upwards and turn yellow at the edges, and the plant stays small with few fruit. It is spread by whiteflies.",
+      "treatment": [
+        "There is no cure for the virus",
+        "Remove and destroy infected plants. Bag them and do not compost them",
+        "Control whiteflies with yellow sticky traps, insecticidal soap or neem oil",
+        "Cover young plants with fine insect netting"
+      ],
+      "prevention": [
+        "Choose virus-resistant varieties",
+        "Check new plants for whiteflies before planting",
+        "Use reflective mulch to deter whiteflies",
+        "Remove weeds that shelter whiteflies"
+      ]
+    },
+    {
+      "class_name": "Tomato___Tomato_mosaic_virus",
+      "crop": "Tomato",
+      "disease": "Mosaic virus",
+      "category": "viral",
+      "is_healthy": false,
+      "symptoms": "Light and dark green mottled patches on leaves, which may be twisted or narrow. Fruit can ripen unevenly.",
+      "treatment": [
+        "There is no cure for the virus",
+        "Remove and destroy infected plants. Bag them and do not compost them",
+        "Wash your hands with soap and disinfect tools after handling infected plants",
+        "Do not smoke or handle tobacco before touching the plants"
+      ],
+      "prevention": [
+        "Use virus-free seed and resistant varieties",
+        "Disinfect tools and pots",
+        "Control weeds",
+        "Do not plant tomatoes where infected plants grew last season"
+      ]
+    },
+    {
+      "class_name": "Tomato___healthy",
+      "crop": "Tomato",
+      "disease": "Healthy",
+      "category": "healthy",
+      "is_healthy": true,
+      "symptoms": "The leaf looks normal: even green colour, no spots, mould or damage.",
+      "treatment": [
+        "No treatment needed. Your plant looks healthy."
+      ],
+      "prevention": [
+        "Water at the base of the plant, not over the leaves",
+        "Remove fallen leaves and plant debris regularly",
+        "Check the leaves once a week for early spots, mould or pests"
+      ]
+    }
+  ]
+}

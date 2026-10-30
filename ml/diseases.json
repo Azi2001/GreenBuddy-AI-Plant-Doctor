@@ -88,7 +88,7 @@
       ]
     },
     {
-      "class_name": "Cherry_(including_sour)___Powdery_mildew",
+      "class_name": "Cherry___Powdery_mildew",
       "crop": "Cherry",
       "disease": "Powdery mildew",
       "category": "fungal",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "class_name": "Cherry_(including_sour)___healthy",
+      "class_name": "Cherry___healthy",
       "crop": "Cherry",
       "disease": "Healthy",
       "category": "healthy",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "class_name": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+      "class_name": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
       "crop": "Corn (maize)",
       "disease": "Gray leaf spot",
       "category": "fungal",
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "class_name": "Corn_(maize)___Common_rust_",
+      "class_name": "Corn___Common_rust",
       "crop": "Corn (maize)",
       "disease": "Common rust",
       "category": "fungal",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "class_name": "Corn_(maize)___Northern_Leaf_Blight",
+      "class_name": "Corn___Northern_Leaf_Blight",
       "crop": "Corn (maize)",
       "disease": "Northern leaf blight",
       "category": "fungal",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "class_name": "Corn_(maize)___healthy",
+      "class_name": "Corn___healthy",
       "crop": "Corn (maize)",
       "disease": "Healthy",
       "category": "healthy",

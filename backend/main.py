@@ -1,15 +1,22 @@
 import io
 import json
+import re
+import uuid
 from pathlib import Path
 
 import numpy as np
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from PIL import Image
+from sqlalchemy.orm import Session
 from tensorflow import keras
 from tensorflow.keras import layers
-import re
+
+from auth import get_current_user
 from auth import router as auth_router
+from database import SessionLocal, get_db
+from models import Disease, Scan, User
 
 # --- Load the model and class names once, when the server starts ---
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,8 +55,16 @@ def build_model(num_classes):
 model = build_model(len(class_names))
 model.load_weights(WEIGHTS_PATH)
 
-# --- Load treatment information ---
-DISEASES_PATH = BASE_DIR / "ml" / "diseases.json"
+# --- Settings ---
+DISCLAIMER = (
+    "These suggestions are general gardening advice, not a guarantee. Always read and "
+    "follow the label of any product, check what is approved in your country, and ask "
+    "your local agriculture office or plant nursery if you are unsure. Try the simple, "
+    "non-chemical steps first."
+)
+MAX_UPLOAD_BYTES = 5 * 1024 * 1024   # 5 MB
+UPLOAD_DIR = Path(__file__).resolve().parent / "uploads"
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 
 def normalize(text):
@@ -57,19 +72,16 @@ def normalize(text):
     return re.sub(r"[^a-z0-9]", "", text.lower())
 
 
-with open(DISEASES_PATH, encoding="utf-8") as f:
-    disease_data = json.load(f)
+# Map each model class to its row in the diseases table
+with SessionLocal() as db:
+    disease_ids = {normalize(d.class_name): d.id for d in db.query(Disease).all()}
 
-disease_info = {normalize(item["class_name"]): item for item in disease_data["diseases"]}
-
-# Safety check: warn if any model class has no treatment entry
-missing = [name for name in class_names if normalize(name) not in disease_info]
+missing = [name for name in class_names if normalize(name) not in disease_ids]
 if missing:
-    print("WARNING: no treatment info for:", missing)
+    print("WARNING: not in the diseases table (run seed_diseases.py):", missing)
 
 # --- Create the app ---
 app = FastAPI(title="GreenBuddy AI Plant Doctor")
-app.include_router(auth_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -78,6 +90,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth_router)
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
 
 @app.get("/")
 def health():
@@ -85,11 +100,18 @@ def health():
 
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...)):
+async def predict(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     if file.content_type not in ("image/jpeg", "image/png"):
         raise HTTPException(status_code=400, detail="Please upload a JPG or PNG image.")
 
     contents = await file.read()
+    if len(contents) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Image is too large. Please upload one under 5 MB.")
+
     try:
         image = Image.open(io.BytesIO(contents)).convert("RGB")
     except Exception:
@@ -104,19 +126,76 @@ async def predict(file: UploadFile = File(...)):
 
     results = []
     for i in top3:
-        crop, _, disease = class_names[i].partition("___")
+        crop, _, disease_name = class_names[i].partition("___")
         results.append({
             "crop": crop.replace("_", " "),
-            "disease": disease.replace("_", " "),
+            "disease": disease_name.replace("_", " "),
             "confidence": round(float(probabilities[i]), 4),
         })
 
-        best_info = disease_info.get(normalize(class_names[top3[0]]))
+    # Find the matching disease row in the database
+    disease_id = disease_ids.get(normalize(class_names[top3[0]]))
+    if disease_id is None:
+        raise HTTPException(status_code=500, detail="Disease information is missing from the database.")
+    disease = db.get(Disease, disease_id)
+
+    low_confidence = results[0]["confidence"] < 0.6
+
+    # Save the photo with a random name
+    extension = ".png" if file.content_type == "image/png" else ".jpg"
+    filename = f"{uuid.uuid4().hex}{extension}"
+    (UPLOAD_DIR / filename).write_bytes(contents)
+
+    # Save the scan
+    scan = Scan(
+        user_id=current_user.id,
+        disease_id=disease.id,
+        confidence=results[0]["confidence"],
+        low_confidence=low_confidence,
+        image_path=f"uploads/{filename}",
+    )
+    db.add(scan)
+    db.commit()
+    db.refresh(scan)
 
     return {
+        "scan_id": scan.id,
         "prediction": results[0],
         "alternatives": results[1:],
-        "low_confidence": results[0]["confidence"] < 0.6,
-        "details": best_info,
-        "disclaimer": disease_data["disclaimer"],
+        "low_confidence": low_confidence,
+        "details": {
+            "is_healthy": disease.is_healthy,
+            "category": disease.category,
+            "symptoms": disease.symptoms,
+            "treatment": disease.treatment,
+            "prevention": disease.prevention,
+        },
+        "image_url": f"/{scan.image_path}",
+        "disclaimer": DISCLAIMER,
     }
+
+
+@app.get("/scans")
+def list_scans(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    scans = (
+        db.query(Scan)
+        .filter(Scan.user_id == current_user.id)
+        .order_by(Scan.created_at.desc())
+        .all()
+    )
+    return [
+        {
+            "id": s.id,
+            "crop": s.disease.crop,
+            "disease": s.disease.name,
+            "is_healthy": s.disease.is_healthy,
+            "confidence": round(s.confidence, 4),
+            "low_confidence": s.low_confidence,
+            "image_url": f"/{s.image_path}",
+            "created_at": s.created_at.isoformat(),
+        }
+        for s in scans
+    ]

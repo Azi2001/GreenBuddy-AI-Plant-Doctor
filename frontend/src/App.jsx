@@ -1,9 +1,23 @@
-function App() {
+import { Navigate, Route, Routes } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import Register from './pages/Register'
+
+export default function App() {
   return (
-    <div className="min-h-screen bg-green-50 flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-green-700">GreenBuddy is alive 🌿</h1>
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
   )
 }
-
-export default App

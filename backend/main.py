@@ -210,8 +210,11 @@ def get_stats(
     user_scans = db.query(Scan).filter(Scan.user_id == current_user.id)
 
     total = user_scans.count()
-    healthy = user_scans.join(Disease).filter(Disease.is_healthy.is_(True)).count()
-    diseased = total - healthy
+    confident = user_scans.filter(Scan.low_confidence.is_(False))
+    confident_total = confident.count()
+    unsure = total - confident_total
+    healthy = confident.join(Disease).filter(Disease.is_healthy.is_(True)).count()
+    diseased = confident_total - healthy
 
     # Scans in the last 7 days (SQLite stores times without a timezone)
     week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).replace(tzinfo=None)
@@ -221,7 +224,11 @@ def get_stats(
     top = (
         db.query(Disease.crop, Disease.name, func.count(Scan.id).label("n"))
         .join(Scan, Scan.disease_id == Disease.id)
-        .filter(Scan.user_id == current_user.id, Disease.is_healthy.is_(False))
+        .filter(
+            Scan.user_id == current_user.id,
+            Scan.low_confidence.is_(False),
+            Disease.is_healthy.is_(False),
+        )
         .group_by(Disease.id)
         .order_by(func.count(Scan.id).desc())
         .first()
@@ -244,7 +251,8 @@ def get_stats(
         "total_scans": total,
         "healthy": healthy,
         "diseased": diseased,
-        "healthy_percent": round(100 * healthy / total) if total else 0,
+        "unsure": unsure,
+        "healthy_percent": round(100 * healthy / confident_total) if confident_total else 0,
         "scans_this_week": this_week,
         "most_common_disease": most_common,
         "scans_per_day": per_day,

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API_URL, apiFetch } from '../api'
 import { useAuth } from '../AuthContext'
-import { formatDate, statusOf } from '../utils'
+import { formatDate, scanTitle, statusOf } from '../utils'
 
 function StatCard({ label, value, hint }) {
   return (
@@ -188,11 +188,7 @@ export default function Dashboard() {
                     />
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-semibold text-gray-900">
-                        {scan.low_confidence
-                          ? 'Could not identify'
-                          : scan.is_healthy
-                            ? `${scan.crop}: healthy`
-                            : `${scan.crop}: ${scan.disease}`}
+                        {scanTitle(scan)}
                       </p>
                       <p className="text-sm text-gray-500">
                         {formatDate(scan.created_at)} · {Math.round(scan.confidence * 100)}%

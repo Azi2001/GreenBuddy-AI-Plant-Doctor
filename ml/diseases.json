@@ -677,6 +677,17 @@
         "Remove fallen leaves and plant debris regularly",
         "Check the leaves once a week for early spots, mould or pests"
       ]
+    },
+           {
+      "class_name": "Not_a_leaf",
+      "crop": "Not a leaf",
+      "disease": "Not a leaf",
+      "category": "other",
+      "is_healthy": false,
+      "symptoms": "This does not look like a plant leaf.",
+      "treatment": [],
+      "prevention": []
     }
+
   ]
 }

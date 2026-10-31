@@ -23,8 +23,8 @@ from sqlalchemy import func
 
 # --- Load the model and class names once, when the server starts ---
 BASE_DIR = Path(__file__).resolve().parent.parent
-WEIGHTS_PATH = BASE_DIR / "ml" / "plant_model.weights.h5"
-CLASSES_PATH = BASE_DIR / "ml" / "class_names.json"
+WEIGHTS_PATH = BASE_DIR / "ml" / "plant_model_v2.weights.h5"
+CLASSES_PATH = BASE_DIR / "ml" / "class_names_v2.json"
 
 with open(CLASSES_PATH) as f:
     class_names = json.load(f)
@@ -66,6 +66,7 @@ DISCLAIMER = (
     "non-chemical steps first."
 )
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024   # 5 MB
+NOT_A_LEAF = "Not_a_leaf"
 UPLOAD_DIR = Path(__file__).resolve().parent / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
@@ -142,7 +143,8 @@ async def predict(
         raise HTTPException(status_code=500, detail="Disease information is missing from the database.")
     disease = db.get(Disease, disease_id)
 
-    low_confidence = results[0]["confidence"] < 0.6
+    not_a_leaf = class_names[top3[0]] == NOT_A_LEAF
+    low_confidence = not_a_leaf or results[0]["confidence"] < 0.6
 
     # Save the photo with a random name
     extension = ".png" if file.content_type == "image/png" else ".jpg"
@@ -166,6 +168,7 @@ async def predict(
         "prediction": results[0],
         "alternatives": results[1:],
         "low_confidence": low_confidence,
+        "not_a_leaf": not_a_leaf,
         "details": {
             "is_healthy": disease.is_healthy,
             "category": disease.category,
@@ -197,6 +200,7 @@ def list_scans(
             "is_healthy": s.disease.is_healthy,
             "confidence": round(s.confidence, 4),
             "low_confidence": s.low_confidence,
+            "not_a_leaf": s.disease.class_name == NOT_A_LEAF,
             "image_url": f"/{s.image_path}",
             "created_at": s.created_at.isoformat(),
         }
@@ -283,6 +287,7 @@ def get_scan(
             "confidence": round(scan.confidence, 4),
         },
         "low_confidence": scan.low_confidence,
+        "not_a_leaf": d.class_name == NOT_A_LEAF,
         "details": {
             "is_healthy": d.is_healthy,
             "category": d.category,

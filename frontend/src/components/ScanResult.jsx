@@ -39,9 +39,36 @@ function Section({ title, children }) {
 }
 
 export default function ScanResult({ result }) {
-  const { prediction, alternatives = [], low_confidence, details, image_url, disclaimer } = result
+  const { prediction, alternatives = [], low_confidence, not_a_leaf, details, image_url, disclaimer } = result
   const healthy = details.is_healthy
   const unsure = low_confidence
+    if (not_a_leaf) {
+    return (
+      <div className="overflow-hidden rounded-2xl bg-white shadow">
+        <div className="grid md:grid-cols-2">
+          <img
+            src={`${API_URL}${image_url}`}
+            alt="The photo you scanned"
+            className="h-64 w-full object-cover md:h-full"
+          />
+          <div className="p-6">
+            <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
+              Not a leaf
+            </span>
+            <h2 className="mt-3 text-2xl font-extrabold text-gray-900">
+              This doesn&apos;t look like a leaf
+            </h2>
+            <p className="mt-2 text-gray-600">
+              GreenBuddy only works on photos of plant leaves. Please try again with a close-up of
+              one leaf in good daylight.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+
 
   const bestGuess = healthy
     ? `${prediction.crop} (healthy)`

@@ -29,6 +29,10 @@ export default function AppLayout() {
               <NavLink to="/scan" className={linkClass}>
                 New scan
               </NavLink>
+              <NavLink to="/history" className={linkClass}>
+                History
+              </NavLink>
+
             </nav>
           </div>
 

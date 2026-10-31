@@ -2,23 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API_URL, apiFetch } from '../api'
 import { useAuth } from '../AuthContext'
-
-function formatDate(iso) {
-  // The server sends UTC times without a timezone marker, so add one
-  const utc = /Z|[+-]\d\d:\d\d$/.test(iso) ? iso : `${iso}Z`
-  return new Date(utc).toLocaleString(undefined, {
-    day: 'numeric',
-    month: 'short',
-    hour: 'numeric',
-    minute: '2-digit',
-  })
-}
-
-function statusOf(scan) {
-  if (scan.low_confidence) return { label: 'Unsure', className: 'bg-gray-100 text-gray-700' }
-  if (scan.is_healthy) return { label: 'Healthy', className: 'bg-green-100 text-green-800' }
-  return { label: 'Needs attention', className: 'bg-amber-100 text-amber-800' }
-}
+import { formatDate, statusOf } from '../utils'
 
 function StatCard({ label, value, hint }) {
   return (
@@ -182,7 +166,12 @@ export default function Dashboard() {
           </div>
 
           <div className="mt-6 rounded-2xl bg-white p-6 shadow">
-            <h2 className="font-bold text-gray-900">Recent scans</h2>
+                        <div className="flex items-center justify-between">
+              <h2 className="font-bold text-gray-900">Recent scans</h2>
+              <Link to="/history" className="text-sm font-medium text-green-700 hover:underline">
+                View all
+              </Link>
+            </div>
             <div className="mt-3 space-y-1">
               {scans.slice(0, 5).map((scan) => {
                 const status = statusOf(scan)

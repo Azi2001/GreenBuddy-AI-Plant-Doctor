@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Scan from './pages/Scan'
 import ScanDetail from './pages/ScanDetail'
+import History from './pages/History' 
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/scan" element={<Scan />} />
         <Route path="/scans/:id" element={<ScanDetail />} />
+        <Route path="/history" element={<History />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

@@ -17,6 +17,8 @@ what is wrong with it and how to treat it, using a CNN trained on 38 crop and di
 |---|---|---|
 | ![Login](docs/screenshots/Login.png) | ![Result](docs/screenshots/Result.png) | ![History](docs/screenshots/History.png) |
 
+![GreenBuddy demo](docs/demo.gif)
+
 ## How it works
 
 ```
@@ -44,7 +46,7 @@ React app  →  FastAPI backend  →  CNN model (MobileNetV2)
 |---|---|
 | Leaf photos (38 classes), clean test set | 95.6% accuracy |
 | Non-leaf photos, test set | 100% recognised |
-| 11 of my own real-world photos | [write what you found, for example: no real leaf was rejected, uncertain ones were flagged] |
+| 11 of my own real-world photos | All 4 non-leaf photos were rejected. None of the 7 real leaves was rejected as "not a leaf". 3 of the 7 were uncertain and shown as "unsure". |
 
 ### Limitations
 
@@ -134,6 +136,15 @@ Open http://localhost:5173. The API docs are at http://127.0.0.1:8000/docs.
 | DELETE | `/scans/{id}` | Delete one of your scans |
 | GET | `/stats` | Your dashboard statistics |
 
+## What I learned
+
+- Built a complete full-stack app: React frontend, FastAPI backend, database, and a trained CNN
+- Fixed a model version mismatch between Google Colab and my computer by exporting the model's
+  weights and rebuilding the architecture in the backend
+- Made the app honest about uncertainty: a confidence limit, plus an extra "not a leaf" class
+  trained to reject photos of other things
+- Tested the model on my own real-world photos, not just the clean test set, and recorded the
+  gap between the two
 ## Roadmap
 
 - "My plants": follow one plant's scans over time
@@ -143,7 +154,6 @@ Open http://localhost:5173. The API docs are at http://127.0.0.1:8000/docs.
 
 ## Credits and disclaimer
 
-- Leaf images: the PlantVillage dataset (Hughes and Salathé, 2015). [check the licence on the
-  dataset page and credit it as it asks]
+- Leaf images: the PlantVillage dataset (Hughes and Salathé, 2015), used via TensorFlow Datasets. See the dataset page for its licence.
 - Non-leaf images: Imagenette (fast.ai) and Caltech-101
 - GreenBuddy gives general guidance only. Always follow product labels and local regulations.
